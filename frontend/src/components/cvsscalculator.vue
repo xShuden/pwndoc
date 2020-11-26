@@ -2,11 +2,11 @@
     <q-card>
         <q-card-section class="row">
             <div class="col-md-6">
-            CVSSv3 Base Score
+            CVSSv3 Puanı
             </div>
             <q-space />
             <div class="scoreRating" :class="severity">
-                <span class="baseSeverity" v-if="!score || score < 0.1">Select values for all base metrics to generate score</span>
+                <span class="baseSeverity" v-if="!score || score < 0.1">Puan oluşturmak için tüm temel metrikler için değerler seçiniz</span>
                 <div v-else>
                     <span class="baseMetricScore">{{score}}</span>
                     <span class="baseSeverity">({{severity}})</span>
@@ -16,7 +16,7 @@
         <q-separator />
         <q-card-section class="row q-col-gutter-md">
             <div class="col-md-6">
-                <div class="q-my-sm text-weight-bold">Attack Vector</div>
+                <div class="q-my-sm text-weight-bold">Saldırı Vektörü</div>
                 <q-btn-toggle
                     class="group-btn"
                     v-model="cvssObj.AV"
@@ -25,7 +25,7 @@
                     no-caps
                     :options="cvssItems.AV"
                 />
-                <div class="q-my-sm text-weight-bold">Attack Complexity</div>
+                <div class="q-my-sm text-weight-bold">Saldırı Karmaşıklığı</div>
                 <q-btn-toggle
                     class="group-btn"
                     v-model="cvssObj.AC"
@@ -34,7 +34,7 @@
                     no-caps
                     :options="cvssItems.AC"
                 />
-                <div class="q-my-sm text-weight-bold">Privileges Required</div>
+                <div class="q-my-sm text-weight-bold">Ayrıcalık Gereksinimi</div>
                 <q-btn-toggle
                     class="group-btn"
                     v-model="cvssObj.PR"
@@ -43,7 +43,7 @@
                     no-caps
                     :options="cvssItems.PR"
                 />
-                <div class="q-my-sm text-weight-bold">User Interaction</div>
+                <div class="q-my-sm text-weight-bold">Kullanıcı Etkileşimi</div>
                 <q-btn-toggle
                     class="group-btn"
                     v-model="cvssObj.UI"
@@ -54,7 +54,7 @@
                 />
             </div>
             <div class="col-md-6">
-                <div class="q-my-sm text-weight-bold">Scope</div>
+                <div class="q-my-sm text-weight-bold">Kapsam</div>
                 <q-btn-toggle
                     class="group-btn"
                     v-model="cvssObj.S"
@@ -63,7 +63,7 @@
                     no-caps
                     :options="cvssItems.S"
                 />
-                <div class="q-my-sm text-weight-bold">Confidentiality Impact</div>
+                <div class="q-my-sm text-weight-bold">Gizlilik Etkisi</div>
                 <q-btn-toggle
                     class="group-btn"
                     v-model="cvssObj.C"
@@ -72,7 +72,7 @@
                     no-caps
                     :options="cvssItems.C"
                 />
-                <div class="q-my-sm text-weight-bold">Integrity Impact</div>
+                <div class="q-my-sm text-weight-bold">Bütünlük Etkisi</div>
                 <q-btn-toggle
                     class="group-btn"
                     v-model="cvssObj.I"
@@ -81,7 +81,7 @@
                     no-caps
                     :options="cvssItems.I"
                 />
-                <div class="q-my-sm text-weight-bold">Availability Impact</div>
+                <div class="q-my-sm text-weight-bold">Kullanılabilirlik Etkisi</div>
                 <q-btn-toggle
                     class="group-btn"
                     v-model="cvssObj.A"
@@ -105,14 +105,14 @@ export default {
     data: function() {
         return {
             cvssItems: {
-                AV: [{label: "Network", value: "N"}, {label: "Adjacent Network", value: "A"}, {label: "Local", value: "L"}, {label: "Physical", value: "P"}],
-                AC: [{label: "Low", value: "L"}, {label: "High", value: "H"}],
-                PR: [{label: "None", value: "N"}, {label: "Low", value: "L"}, {label: "High", value: "H"}],
-                UI: [{label: "None", value: "N"}, {label: "Required", value: "R"}],
-                S: [{label: "Unchanged", value: "U"}, {label: "Changed", value: "C"}],
-                C: [{label: "None", value: "N"}, {label: "Low", value: "L"}, {label: "High", value: "H"}],
-                I: [{label: "None", value: "N"}, {label: "Low", value: "L"}, {label: "High", value: "H"}],
-                A: [{label: "None", value: "N"}, {label: "Low", value: "L"}, {label: "High", value: "H"}]
+                AV: [{label: "Ag", value: "N"}, {label: "Yakın Aglar", value: "A"}, {label: "Yerel Ag", value: "L"}, {label: "Fiziksel", value: "P"}],
+                AC: [{label: "Düşük", value: "L"}, {label: "Yüksek", value: "H"}],
+                PR: [{label: "Yok", value: "N"}, {label: "Düşük", value: "L"}, {label: "Yüksek", value: "H"}],
+                UI: [{label: "Yok", value: "N"}, {label: "Gerekli", value: "R"}],
+                S: [{label: "Değişmedi", value: "U"}, {label: "Değişti", value: "C"}],
+                C: [{label: "Yok", value: "N"}, {label: "Düşük", value: "L"}, {label: "Yüksek", value: "H"}],
+                I: [{label: "Yok", value: "N"}, {label: "Düşük", value: "L"}, {label: "Yüksek", value: "H"}],
+                A: [{label: "Yok", value: "N"}, {label: "Düşük", value: "L"}, {label: "Yüksek", value: "H"}]
             },
             cvssObj: {},
             cvssLocal: this.cvssString,

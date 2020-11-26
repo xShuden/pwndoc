@@ -2,7 +2,7 @@
   <q-layout ref="layout" view="hHr LpR lFf" class="home-background">
     <q-header>
         <q-toolbar color="primary">
-            <div class="text-h5 q-mr-sm">PwnDoc</div>
+            <div class="text-h5 q-mr-sm">PWNDocument</div>
             
             <q-separator vertical dark spaced />
 
@@ -10,21 +10,21 @@
             <q-item-section avatar style="min-width:0" class="q-pr-sm">
                 <q-icon name="fa fa-fingerprint" />
             </q-item-section>
-            <q-item-section>Audits</q-item-section>
+            <q-item-section>Denetimler</q-item-section>
             </q-item>
 
             <q-item to='/vulnerabilities' active-class="text-green">
             <q-item-section avatar style="min-width:0" class="q-pr-sm">
                 <q-icon name="fa fa-shield-alt" />
             </q-item-section>
-            <q-item-section>Vulnerabilities</q-item-section>
+            <q-item-section>Güvenlik Açıkları</q-item-section>
             </q-item>
 
             <q-item to='/datas' active-class="text-green">
             <q-item-section avatar style="min-width:0" class="q-pr-sm">
                 <q-icon name="fa fa-database" />
             </q-item-section>
-            <q-item-section>Datas</q-item-section>
+            <q-item-section>Veriler</q-item-section>
             </q-item>
 
             <q-space />
@@ -33,12 +33,12 @@
                 <q-list>
                   <q-item clickable @click="$router.push('/profile')">
                     <q-item-section side><q-icon size="xs" name="fa fa-id-card" /></q-item-section>
-                    <q-item-section>Profile</q-item-section>
+                    <q-item-section>Profil</q-item-section>
                   </q-item>
                   <q-separator />
                   <q-item clickable @click="logout()">
                     <q-item-section side><q-icon size="xs" name="fa fa-sign-out-alt" /></q-item-section>
-                    <q-item-section>Logout</q-item-section>
+                    <q-item-section>Çıkış</q-item-section>
                   </q-item>
                 </q-list>
             </q-btn-dropdown>

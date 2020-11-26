@@ -1,7 +1,7 @@
 <div>
 <div class="row">
     <div v-if="languages.length === 0" class="col-md-4 offset-md-4 q-mt-md">
-        <p>No languages are defined. </br> Please create Languages in <a href="/datas/custom">Datas -> Custom Datas -> Languages</a></p>
+        <p>Hiç bir  dil tanımlanması tespit edilememiştir.</br>Lütfen <a href="/datas/custom">Datas -> Custom Datas -> Languages</a> dizininden dil oluşturunuz.</p>
     </div>
     <div v-else class="col-8 offset-2 q-mt-md">
         <q-table
@@ -47,10 +47,10 @@
                 label="New Vulnerability"
                 >
                     <q-list separator>
-                        <q-item-label header>Select category</q-item-label>
+                        <q-item-label header>Kategori seç</q-item-label>
                         <q-item clickable v-close-popup @click="currentCategory = null; cleanCurrentVulnerability(); $refs.createModal.show()">
                             <q-item-section>
-                              <q-item-label>No Category</q-item-label>
+                              <q-item-label>Kategori Yok</q-item-label>
                             </q-item-section>
                         </q-item>
                         <q-item v-for="category of vulnCategories" :key="category.name" clickable v-close-popup @click="currentCategory = $_.cloneDeep(category); cleanCurrentVulnerability(); $refs.createModal.show()">
@@ -68,7 +68,7 @@
                         <q-input 
                         dense
                         color="secondary"
-                        label="Search..."
+                        label="Ara..."
                         v-model="search.title"
                         clearable
                         />
@@ -77,7 +77,7 @@
                         <q-select 
                         dense
                         color="secondary"
-                        label="Search..."
+                        label="Ara..."
                         v-model="search.category"
                         clearable
                         :options="vulnCategoriesOptions"
@@ -88,7 +88,7 @@
                         <q-select 
                         dense
                         color="secondary"
-                        label="Search..."
+                        label="Ara..."
                         v-model="search.type"
                         clearable
                         :options="vulnTypeOptions"
@@ -100,14 +100,14 @@
             </template>
 
             <template v-slot:body="props">
-                <q-tr v-if="getDtTitle(props.row) !== 'Not defined for this language yet'" :props="props" :class="(props.row.status === 1)?'bg-light-blue-2':(props.row.status === 2)?'bg-orange-2':''">
+                <q-tr v-if="getDtTitle(props.row) !== 'Henüz bu dil için tanımlanmadı.'" :props="props" :class="(props.row.status === 1)?'bg-light-blue-2':(props.row.status === 2)?'bg-orange-2':''">
                     <q-td key="title" :props="props">
                         {{getDtTitle(props.row)}}
                     </q-td>
                     <q-td key="category" :props="props">
-                        {{props.row.category || 'No Category'}}
+                        {{props.row.category || 'Kategori Yok'}}
                     </q-td>
-                    <q-td key="type" :props="props">
+                    <q-td key="Tip" :props="props">
                         {{getDtType(props.row)}}
                     </q-td>
                     <q-td key="action" :props="props" style="width:1px" v-if="UserService.isAdmin()">
@@ -151,7 +151,7 @@
         <q-bar class="bg-primary text-white">
             <div class="q-toolbar-title">
                 <span v-if="currentCategory">Add Vulnerability ({{currentCategory.name}})</span>
-                <span v-else>Add Vulnerability (No Category)</span>
+                <span v-else>Add Vulnerability (Kategori Yok)</span>
             </div>
             <q-space />
             <q-btn dense flat icon="close" @click="$refs.createModal.hide()" />
@@ -160,7 +160,7 @@
         <q-card-section>
             <div class="q-col-gutter-md row">
                 <q-input
-                label='Title *'
+                label='Başlık *'
                 stack-label
                 class="col-md-8"
                 autofocus
@@ -172,7 +172,7 @@
                 />
                 <q-select 
                 class="col-md-2"
-                label="Type"
+                label="Tip"
                 v-model="currentVulnerability.details[currentDetailsIndex].vulnType" 
                 :options="vulnTypesLang" 
                 option-value="name" 
@@ -182,7 +182,7 @@
                 options-sanitize
                 />
                 <q-select
-                label='Language'
+                label='Dil'
                 stack-label
                 class="col-md-2"
                 v-model="currentLanguage"
@@ -196,7 +196,7 @@
             </div>
         </q-card-section>
         <q-card-section>
-            <q-field borderless label="Description" stack-label>
+            <q-field borderless label="Açıklama" stack-label>
                 <template v-slot="control">
                     <basic-editor v-model="currentVulnerability.details[currentDetailsIndex].description" />
                 </template>
@@ -222,7 +222,7 @@
             </div>
         </q-card-section>
         <q-card-section>
-            <q-field borderless label="Remediation" stack-label>
+            <q-field borderless label="İyileştirme" stack-label>
                 <template v-slot="control">
                     <basic-editor v-model="currentVulnerability.details[currentDetailsIndex].remediation" />
                 </template>
@@ -231,21 +231,21 @@
         <q-card-section>
             <div class="q-col-gutter-md row">
                 <q-select
-                label="Remediation Complexity"
+                label="İyileştirme Zorluğu"
                 stack-label
                 class="col-md-6"
                 v-model="currentVulnerability.remediationComplexity"
-                :options="[{label: 'Easy', value: 1},{label: 'Medium', value: 2},{label: 'Complex', value: 3}]"
+                :options="[{label: 'Kolay', value: 1},{label: 'Orta', value: 2},{label: 'Karmaşık', value: 3}]"
                 map-options
                 emit-value
                 options-sanitize
                 />
                 <q-select
-                label="Remediation Priority"
+                label="İyileştirme Önceliği"
                 stack-label
                 class="col-md-6"
                 v-model="currentVulnerability.priority"
-                :options="[{label: 'Low', value: 1},{label: 'Medium', value: 2},{label: 'High', value: 3},{label: 'Urgent', value: 4}]"
+                :options="[{label: 'Düşük', value: 1},{label: 'Orta', value: 2},{label: 'Yüksek', value: 3},{label: 'Acil', value: 4}]"
                 map-options
                 emit-value
                 options-sanitize
@@ -254,7 +254,7 @@
         </q-card-section>
         <q-card-section>
             <q-input
-            label="References (One per line)"
+            label="Referanslar (Her satıra bir tane)"
             stack-label
             v-model="referencesString"
             type="textarea"
@@ -262,7 +262,7 @@
         </q-card-section>
 
         <q-expansion-item 
-        label="Custom Fields of the category"
+        label="Kategorinin Özel Alanları"
         v-if="currentVulnerability.details[currentDetailsIndex].customFields && currentVulnerability.details[currentDetailsIndex].customFields.length > 0"
         default-opened
         header-class="bg-blue-grey-5 text-white" 
@@ -295,8 +295,8 @@
     <q-card style="width: 50vw">
         <q-bar class="bg-primary text-white">
             <div class="q-toolbar-title">
-                <span v-if="currentVulnerability.category">Edit Vulnerability ({{currentVulnerability.category}})</span>
-                <span v-else>Edit Vulnerability (No Category)</span>
+                <span v-if="currentVulnerability.category">Güvenlik Açığını Düzenle ({{currentVulnerability.category}})</span>
+                <span v-else>Güvenlik Açığını Düzenle (Kategori Yok)</span>
             </div>
             <q-separator vertical color="white" class="q-mx-md" />
             <q-btn-dropdown
@@ -304,10 +304,10 @@
             color="white"
             >
             <q-list separator>
-                <q-item-label header>Select category</q-item-label>
+                <q-item-label header>Kategori seç</q-item-label>
                 <q-item clickable v-close-popup @click="editChangeCategory()">
                     <q-item-section>
-                      <q-item-label>No Category</q-item-label>
+                      <q-item-label>Kategori Yok</q-item-label>
                     </q-item-section>
                 </q-item>
                 <q-item v-for="category of vulnCategories" :key="category.name" clickable v-close-popup @click="editChangeCategory(category)">
@@ -324,7 +324,7 @@
         <q-card-section>
             <div class="q-col-gutter-md row">
                 <q-input
-                label='Title *'
+                label='Başlık *'
                 stack-label
                 class="col-md-8"
                 autofocus
@@ -336,7 +336,7 @@
                 />
                 <q-select 
                 class="col-md-2"
-                label="Type"
+                label="Tip"
                 v-model="currentVulnerability.details[currentDetailsIndex].vulnType" 
                 :options="vulnTypesLang" 
                 option-value="name" 
@@ -346,7 +346,7 @@
                 options-sanitize
                 />
                 <q-select
-                label='Language'
+                label='Dil'
                 stack-label
                 class="col-md-2"
                 v-model="currentLanguage"
@@ -360,7 +360,7 @@
             </div>
         </q-card-section>
         <q-card-section>
-            <q-field borderless label="Description" stack-label>
+            <q-field borderless label="Açıklama" stack-label>
                 <template v-slot="control">
                     <basic-editor v-model="currentVulnerability.details[currentDetailsIndex].description" />
                 </template>
@@ -386,7 +386,7 @@
             </div>
         </q-card-section>
         <q-card-section>
-            <q-field borderless label="Remediation" stack-label>
+            <q-field borderless label="İyileştirme" stack-label>
                 <template v-slot="control">
                     <basic-editor v-model="currentVulnerability.details[currentDetailsIndex].remediation" />
                 </template>
@@ -395,21 +395,21 @@
         <q-card-section>
             <div class="q-col-gutter-md row">
                 <q-select
-                label="Remediation Complexity"
+                label="İyileştirme Zorluğu"
                 stack-label
                 class="col-md-6"
                 v-model="currentVulnerability.remediationComplexity"
-                :options="[{label: 'Easy', value: 1},{label: 'Medium', value: 2},{label: 'Complex', value: 3}]"
+                :options="[{label: 'Kolay', value: 1},{label: 'Orta', value: 2},{label: 'Karmaşık', value: 3}]"
                 map-options
                 emit-value
                 options-sanitize
                 />
                 <q-select
-                label="Remediation Priority"
+                label="İyileştirme Önceliği"
                 stack-label
                 class="col-md-6"
                 v-model="currentVulnerability.priority"
-                :options="[{label: 'Low', value: 1},{label: 'Medium', value: 2},{label: 'High', value: 3},{label: 'Urgent', value: 4}]"
+                :options="[{label: 'Kolay', value: 1},{label: 'Orta', value: 2},{label: 'High', value: 3},{label: 'Acil', value: 4}]"
                 map-options
                 emit-value
                 options-sanitize
@@ -418,7 +418,7 @@
         </q-card-section>
         <q-card-section>
             <q-input
-            label="References (One per line)"
+            label="Referanslar (Her satıra bir tane)"
             stack-label
             v-model="referencesString"
             type="textarea"
@@ -426,7 +426,7 @@
         </q-card-section>
 
         <q-expansion-item 
-        label="Custom Fields of the category"
+        label="Kategorinin Özel Alanları"
         v-if="currentVulnerability.details[currentDetailsIndex].customFields && currentVulnerability.details[currentDetailsIndex].customFields.length > 0"
         default-opened
         header-class="bg-blue-grey-5 text-white" 
@@ -461,7 +461,7 @@
         <q-header elevated>    
                 <q-bar class="bg-primary text-white">
                 <div class="q-toolbar-title">
-                    Update Vulnerability
+                    Güvenlik Açığını Güncelle
                 </div>
                 <q-space />
                 <q-btn dense flat icon="close" @click="$refs.updatesModal.hide()" />
@@ -484,7 +484,7 @@
                     </q-card-section>
                     <q-card-section class="q-col-gutter-md row q-pt-none">
                         <q-input
-                        label='Title *'
+                        label='Başlık *'
                         stack-label
                         class="col-md-8"
                         v-model="currentVulnerability.details[currentDetailsIndex].title" 
@@ -492,7 +492,7 @@
                         />
                         <q-select 
                         class="col-md-2"
-                        label="Type"
+                        label="Tip"
                         v-model="currentVulnerability.details[currentDetailsIndex].vulnType" 
                         :options="vulnTypesLang" 
                         option-value="name" 
@@ -502,7 +502,7 @@
                         options-sanitize
                         />
                         <q-select
-                        label='Language'
+                        label='Dil'
                         stack-label
                         class="col-md-2"
                         v-model="currentLanguage"
@@ -516,7 +516,7 @@
                         />
                     </q-card-section>
                     <q-card-section>
-                        <q-field borderless label="Description" stack-label>
+                        <q-field borderless label="Açıklama" stack-label>
                             <template v-slot="control">
                                 <basic-editor v-model="currentVulnerability.details[currentDetailsIndex].description" />
                             </template>
@@ -540,7 +540,7 @@
                         />
                     </q-card-section>
                     <q-card-section>
-                        <q-field borderless label="Remediation" stack-label>
+                        <q-field borderless label="İyileştirme" stack-label>
                             <template v-slot="control">
                                 <basic-editor v-model="currentVulnerability.details[currentDetailsIndex].remediation" />
                             </template>
@@ -548,21 +548,21 @@
                     </q-card-section>
                     <q-card-section class="q-col-gutter-md row">
                         <q-select
-                        label="Remediation Complexity"
+                        label="İyileştirme Zorluğu"
                         stack-label
                         class="col-md-6"
                         v-model="currentVulnerability.remediationComplexity"
-                        :options="[{label: 'Easy', value: 1},{label: 'Medium', value: 2},{label: 'Complex', value: 3}]"
+                        :options="[{label: 'Kolay', value: 1},{label: 'Orta', value: 2},{label: 'Karmaşık', value: 3}]"
                         map-options
                         emit-value
                         options-sanitize
                         />
                         <q-select
-                        label="Remediation Priority"
+                        label="İyileştirme Önceliği"
                         stack-label
                         class="col-md-6"
                         v-model="currentVulnerability.priority"
-                        :options="[{label: 'Low', value: 1},{label: 'Medium', value: 2},{label: 'High', value: 3},{label: 'Urgent', value: 4}]"
+                        :options="[{label: 'Kolay', value: 1},{label: 'Orta', value: 2},{label: 'High', value: 3},{label: 'Acil', value: 4}]"
                         map-options
                         emit-value
                         options-sanitize
@@ -570,7 +570,7 @@
                     </q-card-section>
                     <q-card-section>
                         <q-input
-                        label="References (One per line)"
+                        label="Referanslar (Her satıra bir tane)"
                         stack-label
                         v-model="referencesString"
                         type="textarea"
@@ -578,7 +578,7 @@
                     </q-card-section>
 
                     <q-expansion-item 
-                    label="Custom Fields of the category"
+                    label="Kategorinin Özel Alanları"
                     default-opened
                     header-class="bg-blue-grey-5 text-white" 
                     expand-icon-class="text-white">
@@ -603,7 +603,7 @@
             
                     <q-card-actions align="right">
                         <q-btn color="primary" outline @click="$refs.updatesModal.hide()">Cancel</q-btn>
-                        <q-btn color="orange" unelevated label="Update" @click="updateVulnerability()" />
+                        <q-btn color="orange" unelevated label="Güncelle" @click="updateVulnerability()" />
                     </q-card-actions>
                 </q-card>
                 <q-card class="col-md-6">
@@ -623,7 +623,7 @@
                         <q-tab-panel v-for="update of vulnUpdates" :key="update._id" :name="update._id" class="q-pa-none">
                             <q-card-section class="row q-col-gutter-md q-pt-none">
                                 <q-input
-                                label='Title *'
+                                label='Başlık *'
                                 stack-label
                                 class="col-md-8"
                                 v-model="update.title"
@@ -632,7 +632,7 @@
                                 <q-select 
                                 class="col-md-2"
                                 :bg-color="(currentVulnerability.details[currentDetailsIndex].vulnType !== update.vulnType)?'red-1':''"
-                                label="Type"
+                                label="Tip"
                                 v-model="update.vulnType" 
                                 :options="vulnTypesLang" 
                                 option-value="name" 
@@ -643,7 +643,7 @@
                                 options-sanitize
                                 />
                                 <q-select
-                                label='Language'
+                                label='Dil'
                                 stack-label
                                 class="col-md-2"
                                 v-model="update.locale"
@@ -659,7 +659,7 @@
                             <q-card-section>
                                 <q-field 
                                 borderless 
-                                label="Description" 
+                                label="Açıklama" 
                                 stack-label
                                 :class="(currentVulnerability.details[currentDetailsIndex].description !== update.description)?'bg-red-1':''"
                                 readonly>
@@ -700,7 +700,7 @@
                             <q-card-section>
                                 <q-field 
                                 borderless 
-                                label="Remediation" 
+                                label="İyileştirme" 
                                 stack-label
                                 :class="(currentVulnerability.details[currentDetailsIndex].remediation !== update.remediation)?'bg-red-1':''"
                                 readonly>
@@ -715,11 +715,11 @@
                             <q-card-section class="q-col-gutter-md row">
                                 <q-select
                                 :bg-color="(currentVulnerability.remediationComplexity != update.remediationComplexity)?'red-1':''"
-                                label="Remediation Complexity"
+                                label="İyileştirme Zorluğu"
                                 stack-label
                                 class="col-md-6"
                                 v-model="update.remediationComplexity"
-                                :options="[{label: 'Easy', value: 1},{label: 'Medium', value: 2},{label: 'Complex', value: 3}]"
+                                :options="[{label: 'Kolay', value: 1},{label: 'Orta', value: 2},{label: 'Karmaşık', value: 3}]"
                                 map-options
                                 emit-value
                                 readonly
@@ -727,11 +727,11 @@
                                 />
                                 <q-select
                                 :bg-color="(currentVulnerability.priority != update.priority)?'red-1':''"
-                                label="Remediation Priority"
+                                label="İyileştirme Önceliği"
                                 stack-label
                                 class="col-md-6"
                                 v-model="update.priority"
-                                :options="[{label: 'Low', value: 1},{label: 'Medium', value: 2},{label: 'High', value: 3},{label: 'Urgent', value: 4}]"
+                                :options="[{label: 'Kolay', value: 1},{label: 'Orta', value: 2},{label: 'High', value: 3},{label: 'Acil', value: 4}]"
                                 map-options
                                 emit-value
                                 readonly
@@ -741,7 +741,7 @@
                             <q-card-section>
                                 <q-input
                                 :bg-color="!($_.isEqual(referencesString, update.references.join('\n')))?'red-1':''"
-                                label="References (One per line)"
+                                label="Referanslar (Her satıra bir tane)"
                                 stack-label
                                 :value="(update.references && update.references.length > 0) ? update.references.join('\n') : ''"
                                 type="textarea"
@@ -750,7 +750,7 @@
                             </q-card-section>
 
                             <q-expansion-item 
-                            label="Custom Fields of the category" 
+                            label="Kategorinin Özel Alanları" 
                             default-opened
                             header-class="bg-blue-grey-5 text-white" 
                             expand-icon-class="text-white">
@@ -792,22 +792,22 @@
 <q-dialog persistent ref="mergeModal">
     <q-card  style="width: 1000px; max-width: 1000px; height: 60vh">
         <q-bar class="bg-primary text-white">
-            <span>Merge Vulnerabilities</span>
+            <span>Güvenlik Açıklarını Birleştir</span>
             <q-space />
             <q-btn dense flat icon="close" @click="$refs.mergeModal.hide()" />
         </q-bar>
 
         <div v-if="languages.length < 2">
             <q-card-section>
-            The goal is to merge different vulnerabilities with different languages into the same vulnerabiliy.<br />
-            So a minimum of 2 Languages must exist.
+            Amaç, farklı dillerdeki farklı güvenlik açıklarını aynı güvenlik açığıyla birleştirmektir.<br />
+            Yani en az 2 Dil mevcut olmalıdır.
             </q-card-section>
         </div>
         <div v-else class="row">
             <div class="col-md-6">
                 <q-card-section class="col-md-6">
                     <q-select
-                    label='Language (Add from right)'
+                    label='Dil (Sağdan ekleyin)'
                     v-model="mergeLanguageLeft"
                     :options="languages"
                     option-value="locale"
@@ -837,7 +837,7 @@
             <div class="col">
                 <q-card-section>
                     <q-select
-                    label='Language (Move to left)'
+                    label='Dil (Soldan ekleyin)'
                     v-model="mergeLanguageRight"
                     :options="languages"
                     option-value="locale"
@@ -866,7 +866,7 @@
         </div>
         <q-separator />
         <q-card-actions align="center">
-                <q-btn color="secondary" unelevated @click="mergeVulnerabilities" :disable="mergeVulnLeft === '' || mergeVulnRight === ''">Merge</q-btn>
+                <q-btn color="secondary" unelevated @click="mergeVulnerabilities" :disable="mergeVulnLeft === '' || mergeVulnRight === ''">Birleştir</q-btn>
             </q-card-actions>
     </q-card>
 </q-dialog>

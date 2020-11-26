@@ -13,7 +13,7 @@
                 <q-input
                 style="width: 300px"
                 color="secondary"
-                label="Search"
+                label="Ara"
                 autofocus
                 clearable
                 v-model="search"
@@ -23,7 +23,7 @@
             <div slot="top-right" slot-scope="props" v-if="UserService.isAdmin()">
                 <q-btn 
                 unelevated
-                label="Add Collaborator" 
+                label="Ortak Çalışan Ekle" 
                 color="secondary"
                 no-caps
                 @click="cleanCurrentCollab(); $refs.createModal.show()"
@@ -33,18 +33,18 @@
             <q-td slot="body-cell-action" slot-scope="props" style="width:1px">
                 <div v-if="UserService.isAdmin()">
                     <q-btn size="sm" flat color="primary" icon="fa fa-edit" @click="clone(props.row); $refs.editModal.show()">
-                        <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Edit</q-tooltip>
+                        <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">DÜzenle</q-tooltip>
                     </q-btn>
                     <q-btn size="sm" flat color="negative" icon="fa fa-trash" @click="confirmDeleteCollab(props.row)">
-                        <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Delete</q-tooltip>
+                        <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Sil</q-tooltip>
                     </q-btn>
                 </div>
             </q-td>
 
             <div slot="bottom" slot-scope="props" class="row">
                 <div class="q-table-control">
-                    <span v-if="collabs.length === 1">1 Collaborator</span>                
-                    <span v-else>{{collabs.length}} Collaborators</span>                
+                    <span v-if="collabs.length === 1">1 Ortak Çalışan</span>                
+                    <span v-else>{{collabs.length}} Ortak Çalışan</span>                
                 </div>
                 <div class="q-table-control" style="position: absolute; right: 24px; height: 24px">
                     <q-pagination input v-model="pagination.page" :max="props.pagesNumber" />            
@@ -59,7 +59,7 @@
     <q-card style="width:800px">
         <q-bar class="bg-primary text-white">
             <div class="q-toolbar-title">
-                Add Collaborator
+                Ortak Çalışan Ekle
             </div>
             <q-space />
             <q-btn dense flat icon="close" @click="$refs.createModal.hide()" />
@@ -67,7 +67,7 @@
         
         <q-card-section>
             <q-input
-            label='Username *'
+            label='Kullanıcı Adı *'
             autofocus
             class="col-md-12"
             :error="!!errors.username"
@@ -78,7 +78,7 @@
         </q-card-section>
         <q-card-section>
             <q-input
-            label='Lastname *'
+            label='Soyad *'
             class="col-md-12"
             :error="!!errors.lastname"
             :error-message="errors.lastname"
@@ -88,7 +88,7 @@
         </q-card-section>
         <q-card-section>
             <q-input
-            label='Firstname *'
+            label='Ad *'
             class="col-md-12"
             :error="!!errors.firstname"
             :error-message="errors.firstname"
@@ -98,7 +98,7 @@
         </q-card-section>  
         <q-card-section>
             <q-select
-            label="Role *"
+            label="Rol *"
             class="col-md-12"
             v-model="currentCollab.role"
             :options="['user', 'report', 'admin']"
@@ -109,7 +109,7 @@
         <q-card-section>
             <q-input 
             v-model="currentCollab.password" 
-            label="Password *" 
+            label="Parola *" 
             type="password"
             :error="!!errors.password" 
             :error-message="errors.password"
@@ -121,8 +121,8 @@
         <q-separator />
 
         <q-card-actions align="right">
-            <q-btn color="primary" outline @click="$refs.createModal.hide()">Cancel</q-btn>
-            <q-btn color="secondary" unelevated @click="createCollab()">Create</q-btn>
+            <q-btn color="primary" outline @click="$refs.createModal.hide()">İptal</q-btn>
+            <q-btn color="secondary" unelevated @click="createCollab()">Oluştur</q-btn>
         </q-card-actions>
     </q-card>
 </q-dialog>
@@ -131,7 +131,7 @@
     <q-card style="width:800px">
         <q-bar class="bg-primary text-white">
             <div class="q-toolbar-title">
-                Edit Collaborator
+                Ortak Çalışan Düzenle
             </div>
             <q-space />
             <q-btn dense flat icon="close" @click="$refs.editModal.hide()" />
@@ -139,7 +139,7 @@
         
         <q-card-section>
                 <q-input
-                label='Username *'
+                label='Kullanıcıadı *'
                 autofocus
                 class="col-md-12"
                 :error="!!errors.username"
@@ -150,7 +150,7 @@
             </q-card-section>
             <q-card-section>
                 <q-input
-                label='Lastname *'
+                label='Soyad *'
                 class="col-md-12"
                 :error="!!errors.lastname"
                 :error-message="errors.lastname"
@@ -160,7 +160,7 @@
             </q-card-section>
             <q-card-section>
                 <q-input
-                label='Firstname *'
+                label='Ad *'
                 class="col-md-12"
                 :error="!!errors.firstname"
                 :error-message="errors.firstname"
@@ -170,7 +170,7 @@
             </q-card-section>  
             <q-card-section>
                 <q-select
-                label="Role *"
+                label="Rol *"
                 class="col-md-12"
                 v-model="currentCollab.role"
                 :options="['user', 'report', 'admin']"
@@ -181,7 +181,7 @@
             <q-card-section>
                 <q-input 
                 v-model="currentCollab.password" 
-                label="Password" 
+                label="Parola" 
                 type="password"
                 @keyup.enter="updateCollab()"
                 />
@@ -190,8 +190,8 @@
         <q-separator />
 
         <q-card-actions align="right">
-            <q-btn color="primary" outline @click="$refs.editModal.hide()">Cancel</q-btn>
-            <q-btn color="secondary" unelevated @click="updateCollab()">Update</q-btn>
+            <q-btn color="primary" outline @click="$refs.editModal.hide()">İptal</q-btn>
+            <q-btn color="secondary" unelevated @click="updateCollab()">Güncelle</q-btn>
         </q-card-actions>
     </q-card>
 </q-dialog>

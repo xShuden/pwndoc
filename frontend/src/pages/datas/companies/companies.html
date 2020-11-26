@@ -13,7 +13,7 @@
                 <q-input
                 style="width: 300px"
                 color="secondary"
-                label="Search"
+                label="Ara"
                 autofocus
                 clearable
                 v-model="search"
@@ -23,7 +23,7 @@
             <div slot="top-right" slot-scope="props">
                 <q-btn 
                 unelevated 
-                label="Add Company"
+                label="Kurum Ekle"
                 color="secondary" 
                 no-caps
                 @click="cleanCurrentCompany(); $refs.createModal.show()"
@@ -36,17 +36,17 @@
 
             <q-td slot="body-cell-action" slot-scope="props" style="width:1px">
                 <q-btn size="sm" flat color="primary" icon="fa fa-edit" @click="clone(props.row); $refs.editModal.show()">
-                    <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Edit</q-tooltip>
+                    <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">İptal</q-tooltip>
                 </q-btn>
                 <q-btn size="sm" flat color="negative" icon="fa fa-trash" @click="confirmDeleteCompany(props.row)">
-                    <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Delete</q-tooltip>
+                    <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Sil</q-tooltip>
                 </q-btn>
             </q-td>
 
             <div slot="bottom" slot-scope="props" class="row fit">
                 <div class="q-table-control">
-                    <span v-if="companies.length === 1">1 Company</span>                
-                    <span v-else>{{companies.length}} Companies</span>                
+                    <span v-if="companies.length === 1">1 Kurum</span>                
+                    <span v-else>{{companies.length}} Kurum</span>                
                 </div>
                 <div class="q-table-control" style="position: absolute; right: 24px; height: 24px">
                     <q-pagination input v-model="pagination.page" :max="props.pagesNumber" />            
@@ -61,7 +61,7 @@
     <q-card style="width:800px">
         <q-bar class="bg-primary text-white">
             <div class="q-toolbar-title">
-                Add Company
+                Kurum Ekle
             </div>
             <q-space />
             <q-btn dense flat icon="close" @click="$refs.createModal.hide()" />
@@ -70,7 +70,7 @@
         <q-card-section>
             <div class="row">
                 <q-input
-                    label='Name *'
+                    label='İsim *'
                     autofocus
                     class="col-md-12"
                     :error="!!errors.name"
@@ -90,8 +90,8 @@
         </q-card-section>
 
         <q-card-actions align="right">
-            <q-btn color="primary" outline @click="$refs.createModal.hide()">Cancel</q-btn>
-            <q-btn color="secondary" unelevated @click="createCompany()">Create</q-btn>
+            <q-btn color="primary" outline @click="$refs.createModal.hide()">İptal</q-btn>
+            <q-btn color="secondary" unelevated @click="createCompany()">Oluştur</q-btn>
         </q-card-actions>
     </q-card>
 </q-dialog>
@@ -100,7 +100,7 @@
     <q-card style="width:800px">
         <q-bar class="bg-primary text-white">
             <div class="q-toolbar-title">
-                Edit Company
+                Kurum Düzenle
             </div>
             <q-space />
             <q-btn dense flat icon="close" @click="$refs.editModal.hide()" />
@@ -109,7 +109,7 @@
         <q-card-section>
             <div class="row">
                 <q-input
-                    label='Name *'
+                    label='İsim *'
                     autofocus
                     class="col-md-12"
                     :error="!!errors.name"
@@ -130,8 +130,8 @@
         </q-card-section>
 
         <q-card-actions align="right">
-            <q-btn color="primary" outline @click="$refs.editModal.hide()">Cancel</q-btn>
-            <q-btn color="secondary" unelevated @click="updateCompany()">Update</q-btn>
+            <q-btn color="primary" outline @click="$refs.editModal.hide()">İptal</q-btn>
+            <q-btn color="secondary" unelevated @click="updateCompany()">Güncelle</q-btn>
         </q-card-actions>
     </q-card>
 </q-dialog>

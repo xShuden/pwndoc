@@ -3,17 +3,17 @@
     <div class="col-md-10 offset-md-1 q-mt-md">
         <q-card>
             <q-card-section class="q-py-xs bg-blue-grey-5 text-white">
-                <div class="text-h6">Vulnerabilities</div>
+                <div class="text-h6">Güvenlik açıkları</div>
             </q-card-section>
             <q-separator />
             <div v-if=UserService.isAdmin()>
                 <q-card-section>
-                    <div class="text-bold">Import Vulnerabilities</div>
+                    <div class="text-bold">Güvenlik Açıklarını İçe Aktar</div>
                 </q-card-section>
                 <q-card-section>
                     <div class="text-grey-8">
-                        Import Vulnerabilities from a .yml or .json file. (Serpico format accepted)<br />
-                        This allows you to easily import a batch of vulnerabilities templates.
+                        Güvenlik açıklarını bir .yml veya .json dosyasından içe aktarın. (Serpico formatı kabul edilir)<br />
+                        Bu, bir grup güvenlik açığı şablonunu kolayca içe aktarmanızı sağlar.
                     </div>
                 </q-card-section>
                 <q-card-section>
@@ -27,7 +27,7 @@
                     @change="importVulnerabilities($event.target.files)"
                     />
                     <q-btn 
-                    label="Import"
+                    label="İçe Aktar"
                     color="secondary"
                     flat
                     class="bg-secondary text-white"
@@ -37,14 +37,14 @@
                 <q-separator />
             </div>
             <q-card-section>
-                <div class="text-bold">Export Vulnerabilities</div>
+                <div class="text-bold">Güvenlik Açıklarını Dışa Aktar</div>
             </q-card-section>
             <q-card-section>
-                    <div class="text-grey-8">Export Vulnerabilities to yaml format. This export can easily be re-imported afterward</div>
+                    <div class="text-grey-8">Güvenlik Açıklarını yaml formatına aktarın. Bu dışa aktarma, daha sonra kolayca yeniden içe aktarılabilir</div>
                 </q-card-section>
                 <q-card-section>
                     <q-btn 
-                    label="Export"
+                    label="Dışa Aktar"
                     color="secondary"
                     flat
                     class="bg-secondary text-white"
@@ -54,17 +54,17 @@
                 <q-separator />
                 <div v-if=UserService.isAdmin()>
                     <q-card-section>
-                        <div class="text-bold">Delete All Vulnerabilities</div>
+                        <div class="text-bold">Tüm Güvenlik Açıklarını Sil</div>
                     </q-card-section>
                     <q-card-section>
                         <div class="text-grey-8">
-                            Delete all existing vulnerabilities.<br />
-                            <strong>This action is definitive!!</strong>
+                            Mevcut tüm güvenlik açıklarını silin.<br />
+                            <strong>Bu eylem geri alınamaz !!</strong>
                         </div>
                     </q-card-section>
                     <q-card-section>
                         <q-btn 
-                        label="Delete All"
+                        label="Hepsini Sil"
                         flat
                         class="bg-negative text-white"
                         @click="deleteAllVulnerabilities"
@@ -77,11 +77,11 @@
     <div class="col-md-10 offset-md-1 q-mt-md">
         <q-card>
             <q-card-section class="q-py-xs bg-blue-grey-5 text-white">
-                <div class="text-h6">Audits</div>
+                <div class="text-h6">Denetimler</div>
             </q-card-section>
             <q-separator />
             <q-card-section>
-                TODO
+                YAPILDI
             </q-card-section>
         </q-card>
     </div>

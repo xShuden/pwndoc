@@ -32,10 +32,10 @@
                     <template v-slot:append>
                         <q-btn-dropdown label="Create" no-caps flat>
                             <q-list separator>
-                                <q-item-label header>Select category</q-item-label>
+                                <q-item-label header>Kategori seç</q-item-label>
                                 <q-item clickable v-close-popup @click="addFinding()">
                                     <q-item-section>
-                                      <q-item-label>No Category</q-item-label>
+                                      <q-item-label>Kategori yok</q-item-label>
                                     </q-item-section>
                                 </q-item>
                                 <q-item v-for="category of vulnCategories" :key="category.name" clickable v-close-popup @click="addFinding(category)">
@@ -55,7 +55,7 @@
                         <q-input 
                         dense
                         color="secondary"
-                        label="Search..."
+                        label="Ara..."
                         v-model="search.title"
                         clearable
                         />
@@ -64,7 +64,7 @@
                         <q-select
                         dense
                         color="secondary"
-                        label="Search..."
+                        label="Ara..."
                         v-model="search.category"
                         clearable
                         :options="vulnCategoriesOptions"
@@ -75,7 +75,7 @@
                         <q-select
                         dense
                         color="secondary"
-                        label="Search..."
+                        label="Ara..."
                         v-model="search.vulnType"
                         clearable
                         :options="vulnTypeOptions"
@@ -93,14 +93,14 @@
                         <q-btn dense round flat :icon="props.expand ? 'arrow_drop_up' : 'arrow_drop_down'" @click="props.expand = !props.expand" />
                     </q-td>
                     <q-td key="category" :props="props">
-                        {{props.row.category || 'No Category'}}
+                        {{props.row.category || 'Kategori yok'}}
                     </q-td>
                     <q-td key="vulnType" :props="props">
-                        {{props.row.detail.vulnType || 'Undefined'}}
+                        {{props.row.detail.vulnType || 'Tanımsız'}}
                     </q-td>
                     <q-td key="action" :props="props" style="width:1px">
                         <q-btn flat color="primary" icon="fa fa-plus-circle" @click="addFindingFromVuln(props.row)">
-                            <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Add to Findings</q-tooltip>                            
+                            <q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Bulgulara Ekle</q-tooltip>                            
                         </q-btn>
                     </q-td>
                 </q-tr>
@@ -113,8 +113,8 @@
 
             <div slot="bottom" slot-scope="props" class="row fit">
                 <div class="q-table-control">
-                    <span v-if="vulnerabilities.length === 1">{{filteredRowsCount}} / 1 Vulnerability</span>                
-                    <span v-else>{{filteredRowsCount}} / {{vulnerabilities.length}} Vulnerabilities</span>                
+                    <span v-if="vulnerabilities.length === 1">{{filteredRowsCount}} / 1 Güvenlik Açığı</span>                
+                    <span v-else>{{filteredRowsCount}} / {{vulnerabilities.length}} Güvenlik Açığı</span>                
                 </div>
                 <div class="q-table-control" style="position: absolute; right: 24px; height: 24px">
                     <q-pagination input v-model="vulnPagination.page" :max="props.pagesNumber" />            

@@ -18,7 +18,7 @@
                             <q-item-section>
                                 <q-input 
                                 v-model="user.username" 
-                                label="Username" 
+                                label="Kullanıcıadı" 
                                 stack-label 
                                 :error="!!errors.username"
                                 :error-message="errors.username" />
@@ -28,7 +28,7 @@
                             <q-item-section>
                                 <q-input 
                                 v-model="user.firstname" 
-                                label="Firstname" 
+                                label="Ad" 
                                 stack-label
                                 :error="!!errors.firstname"
                                 :error-message="errors.firstname"
@@ -39,7 +39,7 @@
                             <q-item-section>
                                 <q-input 
                                 v-model="user.lastname" 
-                                label="Lastname" 
+                                label="Soyad" 
                                 stack-label 
                                 :error="!!errors.lastname"
                                 :error-message="errors.lastname"
@@ -52,7 +52,7 @@
                                     <q-input 
                                     class="col-md-6 q-pr-sm" 
                                     v-model="user.newPassword" 
-                                    label="New Password" 
+                                    label="Yeni Parola" 
                                     stack-label 
                                     type="password"
                                     clearable
@@ -60,7 +60,7 @@
                                     <q-input 
                                     class="col-md-6 q-pl-sm" 
                                     v-model="user.confirmPassword" 
-                                    label="Confirm Password" 
+                                    label="Parola Tekrar" 
                                     stack-label 
                                     type="password"
                                     clearable
@@ -72,7 +72,7 @@
                             <q-item-section>
                                 <q-input 
                                 v-model="user.currentPassword" 
-                                label="Current Password *" 
+                                label="Parola Tekrar *" 
                                 stack-label 
                                 type="password"
                                 :error="!!errors.currentPassword" 
@@ -80,7 +80,7 @@
                                 @keyup.enter="updateProfile"
                                 >
                                     <template v-slot:append>
-                                        <q-btn label="Update" unelevated color="secondary" @click="updateProfile" />
+                                        <q-btn label="Güncelle" unelevated color="secondary" @click="updateProfile" />
                                     </template>
                                 </q-input>
                             </q-item-section>

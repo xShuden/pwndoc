@@ -5,10 +5,10 @@
 			<template v-slot:before>
 				<q-list class="home-drawer">
 					<q-item>
-						<q-item-section>Sections</q-item-section>
+						<q-item-section>Bölümler</q-item-section>
 						<q-item-section side>
 							<q-btn flat dense size="sm" color="info" icon="fa fa-download" @click="generateReport">
-								<q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Download Report</q-tooltip> 
+								<q-tooltip anchor="bottom middle" self="center left" :delay="500" content-class="text-bold">Raporu İndir</q-tooltip> 
 							</q-btn>
 						</q-item-section>
 					</q-item>
@@ -28,7 +28,7 @@
 						<q-item-section avatar>
 							<q-icon name="fa fa-cog"></q-icon>
 						</q-item-section>
-						<q-item-section>General Information</q-item-section>
+						<q-item-section>Genel Bilgiler</q-item-section>
 					</q-item>
 					
 					<div class="row">
@@ -44,7 +44,7 @@
 						<q-item-section avatar>
 							<q-icon name="fa fa-globe"></q-icon>
 						</q-item-section>
-						<q-item-section>Network Scan</q-item-section>
+						<q-item-section>Ağ Taraması</q-item-section>
 					</q-item>
 
 					<div class="row">
@@ -57,7 +57,7 @@
 						<q-item-section avatar>
 							<q-icon name="fa fa-list"></q-icon>
 						</q-item-section>
-						<q-item-section>Findings ({{audit.findings.length || 0}})</q-item-section>
+						<q-item-section>Bulgular ({{audit.findings.length || 0}})</q-item-section>
 						<q-item-section>
 							<q-btn
 							@click="$router.push('/audits/'+auditId+'/findings/add').catch(err=>{})"
@@ -107,7 +107,7 @@
 						<q-item-section avatar>
 							<q-icon name="fa fa-chess-king"></q-icon>
 						</q-item-section>
-						<q-item-section>Executive Summary</q-item-section>
+						<q-item-section>Yönetici Özeti</q-item-section>
 					</q-item>
 
 					<div class="row">
@@ -120,7 +120,7 @@
 						<q-item-section avatar>
 							<q-icon name="fa fa-list"></q-icon>
 						</q-item-section>
-						<q-item-section>Custom Sections</q-item-section>
+						<q-item-section>Özel Bölümler</q-item-section>
 						<q-item-section>
 							<q-btn
 							label=ADD
@@ -130,7 +130,7 @@
 							>
 								<q-menu v-if="sections.length === 0" anchor="top right" self="top left">
 									<q-item v-close-popup>
-										<q-item-section>No custom sections defined yet</q-item-section>
+										<q-item-section>Henüz tanımlanmış özel bölüm yok</q-item-section>
 									</q-item>
 								</q-menu>
 								<q-menu v-else anchor="top right" self="top left">
@@ -164,7 +164,7 @@
 						<q-item-section avatar>
 							<q-icon name="fa fa-user"></q-icon>
 						</q-item-section>
-						<q-item-section>Users Connected</q-item-section>	
+						<q-item-section>Bağlı Kullanıcılar</q-item-section>	
 					</q-item>
 					<q-list dense>
 						<q-item v-for="user of users" :key="user._id">
@@ -231,7 +231,7 @@ export default {
 				.groupBy("category")
 				.map((value, key) => {
 					if (key === 'undefined')
-						return { category: 'No Category', findings: value }
+						return { category: 'Kategori Yok', findings: value }
 					else
 						return {category: key, findings: value}
 				})
@@ -242,10 +242,10 @@ export default {
 		methods: {
 			getFindingColor: function(cvssSeverity) {
 				if (cvssSeverity) {
-					if (cvssSeverity === "Low") return "green";
-					if (cvssSeverity === "Medium") return "orange";
-					if (cvssSeverity === "High") return "red";
-					if (cvssSeverity === "Critical") return "black";
+					if (cvssSeverity === "Düşük") return "green";
+					if (cvssSeverity === "Orta") return "orange";
+					if (cvssSeverity === "Yüksek") return "red";
+					if (cvssSeverity === "Kritik") return "black";
 				}
 				return "light-blue";
 			},
@@ -319,7 +319,7 @@ export default {
             return new Promise((resolve, reject) => {
                 fileReader.onerror = () => {
                     fileReader.abort()
-                    reject(new Error('Problem parsing blob'));
+                    reject(new Error('Blob ayrıştırma sorunu'));
                 }
 
                 fileReader.onload = () => {
@@ -342,7 +342,7 @@ export default {
                 link.remove();
               })
             .catch( async err => {
-                var message = "Error generating template"
+                var message = "Şablon oluşturulurken hata oluştu"
                 if (err.response && err.response.data) {
                     var blob = new Blob([err.response.data], {type: "application/json"})
                     var blobData = await this.BlobReader(blob)

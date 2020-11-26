@@ -7,14 +7,14 @@
         </q-banner>
         <q-card v-show="init === true" align="center" style="width:350px">
             <q-card-section>
-                PwnDoc Initialization, Register first User
+                PwnDoc Başlangıç, İlk Kullanıcıyı Kaydet
             </q-card-section>
 
             <q-separator />
 
             <q-card-section>
                 <q-input
-                label="Username"
+                label="Kullanıcıadı"
                 :error="!!errors.username"
                 :error-message="errors.username"
                 hide-bottom-space
@@ -25,7 +25,7 @@
             </q-card-section>
             <q-card-section>
                 <q-input
-                label="Firstname"
+                label="Ad"
                 :error="!!errors.firstname"
                 :error-message="errors.firstname"
                 hide-bottom-space
@@ -35,7 +35,7 @@
             </q-card-section>
             <q-card-section>
                 <q-input
-                label="Lastname"
+                label="Soyad"
                 :error="!!errors.lastname"
                 :error-message="errors.lastname"
                 hide-bottom-space
@@ -45,7 +45,7 @@
             </q-card-section>
             <q-card-section>
                 <q-input
-                label="Password"
+                label="Parola"
                 :error="!!errors.password"
                 :error-message="errors.password"
                 hide-bottom-space
@@ -58,19 +58,19 @@
             <q-separator />
             
             <q-card-actions align="center">
-                <q-btn color="secondary" @click="initUser()">Create First User</q-btn>
+                <q-btn color="secondary" @click="initUser()">İlk Kullanıcıyı Oluşturun</q-btn>
             </q-card-actions>
         </q-card>
         <q-card v-show="init === false" align="center" style="width:350px">
             <q-card-section>
-                PwnDoc Login
+                PwnDoc Giriş
             </q-card-section>
 
             <q-separator />
 
             <q-card-section>
                 <q-input
-                label="Username"
+                label="Kullanıcıadı"
                 :error="!!errors.username"
                 :error-message="errors.username"
                 v-model="username"
@@ -82,7 +82,7 @@
             </q-card-section>
             <q-card-section>
                 <q-input
-                label="Password"
+                label="Parola"
                 :error="!!errors.password"
                 :error-message="errors.password"
                 v-model="password"
@@ -96,7 +96,7 @@
             <q-separator />
             
             <q-card-actions align="center">
-                <q-btn color="secondary" @click="getToken()">Login</q-btn>
+                <q-btn color="secondary" @click="getToken()">Giriş</q-btn>
             </q-card-actions>
         </q-card>
     </div>
@@ -122,8 +122,8 @@ export default {
 
     created: function() {
         if (this.$route.query.tokenError)
-            if (this.$route.query.tokenError === "2") this.errors.alert = "Expired token";
-            else this.errors.alert = "Invalid token";
+            if (this.$route.query.tokenError === "2") this.errors.alert = "Token süresi doldu";
+            else this.errors.alert = "Geçersiz Token";
         this.checkInit();
     },
 
@@ -138,7 +138,7 @@ export default {
         },
 
         checkInit() {
-            Loading.show({message: '<p>Trying to contact backend</p>', customClass: 'loading', backgroundColor: 'blue-grey-8'});
+            Loading.show({message: '<p>Backend ile iletişim kurmaya çalışılıyor</p>', customClass: 'loading', backgroundColor: 'blue-grey-8'});
             UserService.isInit()
             .then((data) => {
                 Loading.hide();
@@ -147,7 +147,7 @@ export default {
             })
             .catch(err => {
                 Loading.show({
-                    message: "<i class='material-icons'>wifi_off</i><br /><p>Something went wrong contacting backend</p>", 
+                    message: "<i class='material-icons'>wifi_off</i><br /><p>Backend ile iletişim kurulurken bazı sorunlar oluştu</p>", 
                     spinner: null, 
                     backgroundColor: 'red-10', 
                     customClass: 'loading-error'})
@@ -158,13 +158,13 @@ export default {
          initUser() {
             this.cleanErrors();
             if (!this.username)
-                this.errors.username = "Username required";
+                this.errors.username = "Kullanıcıadı gerekli";
             if (!this.password)
-                this.errors.password = "Password required";
+                this.errors.password = "Parola gerekli";
             if (!this.firstname)
-                this.errors.firstname = "Firstname required";
+                this.errors.firstname = "Ad gerekli";
             if (!this.lastname)
-                this.errors.lastname = "Lastname required";
+                this.errors.lastname = "Soyad gerekli";
 
             if (this.errors.username || this.errors.password || this.errors.firstname || this.errors.lastname)
                 return;
@@ -175,16 +175,16 @@ export default {
             })
             .catch(err => {
                 console.log(err)
-                this.errors.alert = "Invalid credentials";
+                this.errors.alert = "Geçersiz kimlik bilgileri";
             })
         },
 
         getToken() {
             this.cleanErrors();
             if (!this.username)
-                this.errors.username = "Username required";
+                this.errors.username = "Kullanıcıadı gerekli";
             if (!this.password)
-                this.errors.password = "Password required";
+                this.errors.password = "Parola gerekli";
 
             if (this.errors.username || this.errors.password)
                 return;
@@ -194,7 +194,7 @@ export default {
                 this.$router.push('/');
             })
             .catch(err => {
-                this.errors.alert = "Invalid credentials";
+                this.errors.alert = "Geçersiz kimlik bilgileri";
             })
         }
     }

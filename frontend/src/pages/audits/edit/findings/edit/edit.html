@@ -4,7 +4,7 @@
         <q-btn
         color="orange"
         class="q-mr-sm"
-        label="Propose Creation / Update in Vulnerability Database"
+        label="Güvenlik Açığı Veritabanında Oluşturma / Güncelleme"
         no-caps
         @click="backupFinding()"
         />
@@ -15,7 +15,7 @@
         no-caps
         @click="deleteFinding()"
         />
-        <q-btn color="positive" label="Save (ctrl+s)" no-caps @click="updateFinding()" />
+        <q-btn color="positive" label="Kaydet (ctrl+s)" no-caps @click="updateFinding()" />
     </div>
 </breadcrumb>
 
@@ -25,7 +25,7 @@
         <q-tab ref="proofs" name="proofs" label="Proofs"/>
         <q-tab name="details" label="Details" />
         <q-separator vertical />
-        <q-toggle label="Completed" v-model="finding.status" :true-value=0 :false-value=1 checked-icon="check" unchecked-icon="clear" color="green" />
+        <q-toggle label="Tamamlandı" v-model="finding.status" :true-value=0 :false-value=1 checked-icon="check" unchecked-icon="clear" color="green" />
         <q-space />
     </q-tabs>
 
@@ -36,7 +36,7 @@
                         <q-input class="col-md-8" label="Title *" stack-label v-model="finding.title" />
                         <q-select 
                         class="col-md-4"
-                        label="Type"
+                        label="Tip"
                         v-model="finding.vulnType" 
                         :options="vulnTypesLang" 
                         option-value="name" 
@@ -57,7 +57,7 @@
                         </q-field>
                         <q-input
                         class="col-md-12"
-                        label="References (One per line)"
+                        label="Referanslar (Her satıra bir tane)"
                         stack-label
                         v-model="referencesString"
                         type="textarea"
@@ -65,7 +65,7 @@
                 </q-card-section>
 
                 <q-expansion-item 
-                label="Custom Fields of the category"
+                label="Özelleştirilebilir Kategori Alanı"
                 v-if="finding.customFields && finding.customFields.length > 0"
                 default-opened
                 header-class="bg-blue-grey-5 text-white" 
@@ -100,7 +100,7 @@
         </q-tab-panel>
         <q-tab-panel name="details">
             <q-card>
-                <q-card-section>Affected Assets</q-card-section>
+                <q-card-section>Etkilenen Varlıklar</q-card-section>
                 <q-separator />
                 <q-card-section>
                     <q-field borderless>
@@ -123,16 +123,16 @@
                 </div>
             </q-card>
             <q-card class="q-mt-md">
-            <q-card-section>Course of actions</q-card-section>
+            <q-card-section>Eylemlerin Akışı</q-card-section>
             <q-separator />
             <q-card-section>
                 <div class="q-col-gutter-md row">
                     <q-select
-                    label="Remediation Difficulty"
+                    label="İyileştirme Zorluğu"
                     stack-label
                     class="col-md-6"
                     v-model="finding.remediationComplexity"
-                    :options="[{label: 'Easy', value: 1},{label: 'Medium', value: 2},{label: 'Complex', value: 3}]"
+                    :options="[{label: 'Kolay', value: 1},{label: 'Orta', value: 2},{label: 'Karmaşık', value: 3}]"
                     map-options
                     emit-value
                     options-sanitize
@@ -142,7 +142,7 @@
                     stack-label
                     class="col-md-6"
                     v-model="finding.priority"
-                    :options="[{label: 'Low', value: 1},{label: 'Medium', value: 2},{label: 'High', value: 3},{label: 'Urgent', value: 4}]"
+                    :options="[{label: 'Düşük', value: 1},{label: 'Orta', value: 2},{label: 'Yüksek', value: 3},{label: 'Acil', value: 4}]"
                     map-options
                     emit-value
                     options-sanitize
@@ -150,7 +150,7 @@
                 </div>
             </q-card-section>
             <q-card-section>
-                <q-field class="col-md-12" borderless label="Remediation" stack-label>
+                <q-field class="col-md-12" borderless label="İyileştirme" stack-label>
                     <template v-slot="control">
                         <basic-editor v-model="finding.remediation" />
                     </template>

@@ -10,9 +10,9 @@
         <q-card >
             <q-card-section>
                 <q-input label="Name *" v-model="audit.name" />
-                <q-input label="Location" v-model="audit.location" />
+                <q-input label="Yer" v-model="audit.location" />
                 <q-select 
-                label="Assessment Type"
+                label="Değerlendirme Türü"
                 v-model="audit.auditType" 
                 :options="auditTypesLang" 
                 option-value="name" 
@@ -22,7 +22,7 @@
                 options-sanitize
                 />
                 <q-select
-                label="Company"
+                label="Kurum"
                 v-model="audit.company"
                 :options="companies"
                 option-value="_id"
@@ -32,7 +32,7 @@
                 options-sanitize
                 />
                 <q-select
-                label="Client"
+                label="Müşteri"
                 v-model="audit.client"
                 :options="selectClients"
                 option-value="email"
@@ -42,7 +42,7 @@
                 options-sanitize
                 />
                 <q-select 
-                label="Collaborators"
+                label="Ortak Çalışanlar"
                 v-model="audit.collaborators"
                 :options="collaborators"
                 option-value="username"
@@ -57,7 +57,7 @@
     <div class="col-md-6">
         <q-card >
             <q-card-section>
-                <q-input label="Redacting Date" v-model="audit.date">
+                <q-input label="Düzeltme Tarihi" v-model="audit.date">
                     <template v-slot:append>
                         <q-icon name="event" class="cursor-pointer">
                         <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
@@ -66,7 +66,7 @@
                         </q-icon>
                     </template>
                 </q-input>
-                <q-input label="Start Date" v-model="audit.date_start">
+                <q-input label="Başlangıç Tarihi" v-model="audit.date_start">
                     <template v-slot:append>
                         <q-icon name="event" class="cursor-pointer">
                         <q-popup-proxy ref="qDateStartProxy" transition-show="scale" transition-hide="scale">
@@ -75,7 +75,7 @@
                         </q-icon>
                     </template>
                 </q-input>
-                <q-input label="End Date" v-model="audit.date_end">
+                <q-input label="Bİtiş Tarihi" v-model="audit.date_end">
                     <template v-slot:append>
                         <q-icon name="event" class="cursor-pointer">
                         <q-popup-proxy ref="qDateEndProxy" transition-show="scale" transition-hide="scale">
@@ -85,7 +85,7 @@
                     </template>
                 </q-input>
                 <q-select 
-                label="Scope"
+                label="Kapsam"
                 stack-label
                 v-model="audit.scope"
                 multiple
@@ -96,7 +96,7 @@
                 options-sanitize
                 />
                 <q-select 
-                label="Language"
+                label="Dil"
                 v-model="audit.language" 
                 :options="languages" 
                 option-value="locale" 
@@ -106,7 +106,7 @@
                 options-sanitize
                 />
                 <q-select
-                label="Template"
+                label="Şablon"
                 v-model="audit.template"
                 :options="templates"
                 option-value="_id"
